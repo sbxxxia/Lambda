@@ -56,7 +56,15 @@
         },
         methods: {
             search() {
-                this.$store.dispatch("crawling/search", this.searchWord);
+                alert("검색 단어: "+this.searchWord)
+                if(this.searchWord === '벅스'){
+                    alert('벅스뮤직')
+                    this.$store.dispatch("crawling/search", this.searchWord);
+                }else if(this.searchWord === '축구'){
+                    alert('축구목록')
+                    this.$store.dispatch("soccer/search", this.searchWord);
+                }
+
             }
         }
     };

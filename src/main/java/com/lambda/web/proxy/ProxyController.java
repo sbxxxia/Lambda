@@ -14,6 +14,7 @@ public class ProxyController{
     @Autowired Box<Object> box;
     @Autowired Crawler crawler;
     @Autowired Proxy pxy;
+    @Autowired FileUploader uploader;
 
     @PostMapping("/bugsmusic")
     public HashMap<String,Object> bugsmusic(@RequestBody String searchWord){
@@ -25,6 +26,12 @@ public class ProxyController{
         pxy.print("조회한 수: "+list.size());
         box.put("count", list.size());
         return box.get();
+    }
 
+    @PostMapping("/soccer")
+    public HashMap<String,Object> soccer(@RequestBody String keyword){
+        pxy.print("검색 키워드: "+keyword);
+
+        return null;
     }
 }

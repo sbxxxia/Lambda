@@ -1,26 +1,30 @@
 package com.lambda.web.soccer;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import javax.persistence.*;
+import java.util.List;
 
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="stadium")
+@Component
 public class Stadium {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long stadiumNo;
 
-    @Column(length = 40) private String stadiumId;
+    @NotNull @Column(length = 10) private String stadiumId;
+    @Column(length = 10) private String hometeamId, seatCount, ddd, tel;
     @Column(length = 40) private String stadiumName;
-    @Column(length = 10) private String hometeamId;
-    @Column(length = 10) private String seatCount;
     @Column(length = 60) private String address;
-    @Column(length = 10) private String ddd;
-    @Column(length = 10) private String tel;
+
+    @OneToMany(mappedBy = "stadium")
+    private List<Team> teamList;
+
+    @OneToMany(mappedBy = "stadium")
+    private List<Schedule> scheduleList;
 
     @Builder
     public Stadium(String stadiumId, String stadiumName, String hometeamId, String seatCount,
