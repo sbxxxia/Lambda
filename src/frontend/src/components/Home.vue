@@ -56,7 +56,6 @@
         },
         methods: {
             search() {
-                alert("1");
                 this.$store.dispatch("crawling/search", this.searchWord);
             }
         }

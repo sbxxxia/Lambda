@@ -12,7 +12,14 @@ public class Music {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long musicNo;
 
-    private String seq, title, artist, thumbnail;
+    @Column(length = 4, nullable = false)
+    private String seq;
+    @Column(length = 30, nullable = false)
+    private String title;
+    @Column(length = 30, nullable = false)
+    private String artist;
+    @Column(length = 200, nullable = false)
+    private String thumbnail;
 
     @Builder
     public Music(String seq, String title, String artist, String thumbnail) {
