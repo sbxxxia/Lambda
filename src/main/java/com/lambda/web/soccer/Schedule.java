@@ -1,6 +1,7 @@
 package com.lambda.web.soccer;
 
 import lombok.*;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="schedule")
-@Component
+@Component @Lazy
 public class Schedule {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long scheNo;

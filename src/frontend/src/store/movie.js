@@ -1,12 +1,13 @@
 import axios from 'axios'
 
 const state = {
-    soccer: [],
-    context: "http://localhost:5000/"
+    context: `http://localhost:5000/`,
+    movie: [],
+    count: 0
 }
 const actions = {
     async search({commit},searchWord){
-        axios.get(state.context+`/soccer/`+searchWord)
+        axios.get(state.context+`/movie/`+searchWord)
             .then(({data})=>{
                 alert('연결')
                 commit('SEARCH',data)
@@ -17,9 +18,7 @@ const actions = {
     }
 }
 const mutations = {
-    SEARCH(){
-        alert('뮤테이션 진입')
-    }
+
 }
 const getters = {
 
@@ -31,5 +30,4 @@ export default {
     actions,
     mutations,
     getters
-
 }

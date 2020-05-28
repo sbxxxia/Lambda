@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 @RestController
 public class SoccerController {
-    @Autowired Player player;
-    @Autowired Schedule schedule;
-    @Autowired Stadium stadium;
-    @Autowired Team team;
+//    @Autowired Player player;
+//    @Autowired Schedule schedule;
+//    @Autowired Stadium stadium;
+//    @Autowired Team team;
 
 }

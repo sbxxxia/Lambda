@@ -1,6 +1,7 @@
 package com.lambda.web.soccer;
 
 import lombok.*;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="stadium")
-@Component
+@Component @Lazy
 public class Stadium {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long stadiumNo;

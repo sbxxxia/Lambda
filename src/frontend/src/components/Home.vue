@@ -51,7 +51,8 @@
     export default {
         data() {
             return {
-                searchWord: ""
+                searchWord: "",
+                count: 0
             };
         },
         methods: {
@@ -63,6 +64,9 @@
                 }else if(this.searchWord === '축구'){
                     alert('축구목록')
                     this.$store.dispatch("soccer/search", this.searchWord);
+                }else if(this.searchWord === '네이버영화'){
+                    alert('영화랭킹')
+                    this.$store.dispatch("movie/search", this.searchWord);
                 }
 
             }
