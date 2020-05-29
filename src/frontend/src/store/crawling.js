@@ -2,7 +2,7 @@ import axios from "axios"
 import router from "../router";
 
 const state = {
-    context: `http://localhost:5000/`,
+    context: 'http://localhost:5000/',
     bugsmusic: [],
     count: 0
 
@@ -10,19 +10,36 @@ const state = {
 const actions = {
     async search({commit}, searchWord){
         alert('검색어: '+searchWord)
-        axios.post(state.context+`bugsmusic`,searchWord,{
-            authorization: 'JWT fefege..',
-            Accept : 'application/json',
-            'Content-Type': 'application/json'
-        })
-            .then(({data})=>{
-                alert('검색된 결과 수: '+data.count)
-                commit('SEARCH', data)
-                router.push('/retriever')
-            })
-            .catch(()=>{
-                alert('통신 실패 !')
-            })
+        switch (searchWord) {
+            case '벅스':
+                axios
+                    .post(state.context+`bugsmusic`,searchWord,{
+                        authorization: 'JWT fefege..',
+                        Accept : 'application/json',
+                        'Content-Type': 'application/json'
+                    })
+                    .then(({data})=>{
+                        alert('검색된 결과 수: '+data.count)
+                        commit('SEARCH', data)
+                        router.push('/retriever')
+                    })
+                    .catch(()=>{
+                        alert('통신 실패 !')
+                    })
+                break;
+            case '네이버영화':
+                axios
+                    .get(state.context+`movie/${searchWord}`)
+                    .then(({data})=>{
+                        alert('연결')
+                        commit('SEARCH',data)
+                    })
+                    .catch(()=>{
+                        alert('실패')
+                    })
+                break;
+        }
+
     }
 }
 const mutations = {

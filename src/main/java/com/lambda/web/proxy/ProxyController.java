@@ -36,13 +36,11 @@ public class ProxyController{
         return null;
     }
 
-    @GetMapping("/movie/{searchWord}")
-    public HashMap<String,Object> naverMovie(@PathVariable String searchWord){
+    @GetMapping("movie/{searchWord}")
+    public void naverMovie(@PathVariable String searchWord){
         pxy.print("키워드: "+searchWord);
         box.clear();
-        movieCrawler.naverMovie();
-
-        return null;
+        crawler.naverMovie();
     }
 
 }

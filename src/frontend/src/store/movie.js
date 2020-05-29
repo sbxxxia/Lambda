@@ -7,7 +7,8 @@ const state = {
 }
 const actions = {
     async search({commit},searchWord){
-        axios.get(state.context+`/movie/`+searchWord)
+        axios
+            .get(state.context+`movie/${searchWord}`)
             .then(({data})=>{
                 alert('연결')
                 commit('SEARCH',data)
@@ -24,7 +25,7 @@ const getters = {
 
 }
 export default {
-    name: 'soccer',
+    name: 'movie',
     namespaced: true,
     state,
     actions,

@@ -13,13 +13,13 @@ public class Music {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long musicNo;
 
-//    @Column(length = 4, nullable = false)
+    @Column(length = 4, nullable = false)
     private String seq;
-//    @Column(length = 30, nullable = false)
+    @Column(length = 30, nullable = false)
     private String title;
-//    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String artist;
-//    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false)
     private String thumbnail;
 
     @Builder
