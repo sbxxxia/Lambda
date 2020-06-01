@@ -7,7 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 @Entity
-@Component
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,50 +28,5 @@ public class Movie {
         this.rank = rank;
         this.title = title;
         this.rankDate = rankDate;
-    }
-
-    public Movie() {
-    }
-
-    public void setMovieSeq(Long movieSeq) {
-        this.movieSeq = movieSeq;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setRankDate(String rankDate) {
-        this.rankDate = rankDate;
-    }
-
-    public Long getMovieSeq() {
-        return movieSeq;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getRankDate() {
-        return rankDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movieSeq=" + movieSeq +
-                ", rank='" + rank + '\'' +
-                ", title='" + title + '\'' +
-                ", rankDate='" + rankDate + '\'' +
-                '}';
     }
 }

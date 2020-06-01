@@ -14,7 +14,7 @@ const router = new VueRouter({
         {path: '/', component: Home},
         {path: '/retriever', component: Retriever},
         {path: '/soccer', component: Soccer},
-        {path: '/movie', component: Movie}
+        {path: '/naverMovie', component: Movie}
     ]
 });
 
