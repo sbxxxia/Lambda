@@ -55,6 +55,9 @@
                 count: 0
             };
         },
+        created() {
+            alert('홈에서 크리티드 실행됨')
+        },
         methods: {
             search() {
                 alert("검색 단어: "+this.searchWord)

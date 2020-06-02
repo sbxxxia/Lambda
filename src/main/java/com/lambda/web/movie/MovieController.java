@@ -20,12 +20,13 @@ public class MovieController {
 
     @GetMapping("/list/{pageNumber}/{searchWord}")
     public Map<?,?> list(@PathVariable("pageNumber") String pageNumber,
-                    @PathVariable("searchWord") String searchWord){
+                         @PathVariable("searchWord") String searchWord){
         if(searchWord.equals("")){
             pxy.print("검색어가 없음");
         } else {
             pxy.print("검색어가 "+searchWord);
         }
+        pager.paging();
         pager.setNowPage(pxy.integer(pageNumber));
         pager.setBlockSize(5);
         pager.setPageSize(5);
@@ -36,7 +37,7 @@ public class MovieController {
             pxy.print(m.toString());
         }
         box.clear();
-        box.put("count", l.size());
+        box.put("pager", pager);
         box.put("list", l);
         return box.get();
     }

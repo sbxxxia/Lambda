@@ -46,7 +46,6 @@ const actions = {
 }
 const mutations = {
     SEARCH(state, data){
-        alert('뮤테이션에서 결과 수: '+data.count)
         state.bugsmusic = []
         state.count = data.count
         data.list.forEach(item => {
