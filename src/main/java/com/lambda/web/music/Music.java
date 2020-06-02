@@ -15,7 +15,7 @@ public class Music {
 
     @Column(length = 4, nullable = false)
     private String seq;
-    @Column(length = 30, nullable = false)
+    @Column(length = 100, nullable = false)
     private String title;
     @Column(length = 100, nullable = false)
     private String artist;

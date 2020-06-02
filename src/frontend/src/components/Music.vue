@@ -1,22 +1,22 @@
 <template>
     <div>
-        <h3>총 게시글 수: {{pager.rowCount}}</h3>
+        <h3>검색결과 : {{pager.rowCount}}</h3>
         <v-simple-table>
             <template v-slot:default>
                 <thead>
                 <tr>
                     <th class="text-left">No.</th>
-                    <th class="text-left">순위</th>
-                    <th class="text-left">영화제목</th>
-                    <th class="text-left">날짜</th>
+                    <th class="text-left">이미지</th>
+                    <th class="text-left">노래제목</th>
+                    <th class="text-left">가 수</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="item of list" :key="item.seq">
-                    <td>{{item.movieSeq}}</td>
-                    <td>{{ item.rank }}</td>
+                    <td>{{ item.seq }}</td>
+                    <td><img :src="item.thumbnail"></td>
                     <td>{{ item.title }}</td>
-                    <td>{{ item.rankDate }}</td>
+                    <td>{{ item.artist }}</td>
                 </tr>
                 </tbody>
             </template>
@@ -30,7 +30,10 @@
 <!--            <v-pagination v-model="page" :length="5" :total-visible="5"></v-pagination>-->
         </div>
     </div>
+
+
 </template>
+
 <script>
     import { mapState } from "vuex";
     import axios from "axios";
@@ -38,38 +41,35 @@
     export default {
         data () {
             return {
-                pageNumber: 0,
-                existPrev: false,
-                existNext: true,
-                pages: [1,2,3,4,5],
                 list: [],
+                page: 1,
                 pager: {},
-                totalCount: ''
+                pages: [1,2,3,4,5],
+                existPrev: false,
+                existNext: true
             }
         },
         created() {
             axios
-                .get(`${this.$store.state.search.context}/movies/${this.$store.state.search.searchWord}/${this.$store.state.search.pageNumber}`)
+                .get(`${this.$store.state.search.context}/musics/${this.$store.state.search.searchWord}/${this.$store.state.search.pageNumber}`)
                 .then(res=>{
-                    res.data.list.forEach(elem => {this.list.push(elem)})
+                    res.data.list.forEach(elem=>{this.list.push(elem)})
                     this.pager = res.data.pager
                     let i = this.pager.startPage +1
                     let arr = []
                     console.log(`페이지 끝: ${this.pager.endPage}`)
-                    for(; i <= this.pager.endPage + 1; i++){
+                    for(; i <= this.pager.endPage +1; i++){
                         arr.push(i)
                     }
                 })
                 .catch(err=>{
-                    alert(`영화 통신 실패 ${err}`)
+                    alert(`음악 전송 실패 ${err}`)
                 })
-
         },
         computed: {
             ...mapState({
-                count : state => state.crawling.count,
-                bugsmusic: state => state.crawling.bugsmusic,
-                navermovie: state => state.crawling.navermovie
+                count: state => state.crawling.count,
+                bugsmusic: state => state.crawling.bugsmusic
             })
         }
     };

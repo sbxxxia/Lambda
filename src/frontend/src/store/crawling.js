@@ -14,32 +14,28 @@ const actions = {
         switch (searchWord) {
             case '벅스':
                 axios
-                    .post(state.context+`bugsmusic`,searchWord,{
-                        authorization: 'JWT fefege..',
-                        Accept : 'application/json',
-                        'Content-Type': 'application/json'
+                    .post(state.context + `bugsmusic`,searchWord, {
+                        authorization: "JWT fefege..",
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
                     })
-                    .then(({data})=>{
-                        alert('검색된 결과 수: '+data.count)
-                        commit('SEARCH', data)
-                        router.push('/retriever')
+                    .then(({ data }) => {
+                        commit("SEARCH", data);
+                        router.push("/retriever");
                     })
-                    .catch(()=>{
-                        alert('통신 실패 !')
-                    })
-                break;
+                    .catch(() => {
+                        alert("통신 실패 !");
+                    });
+                break
             case '네이버영화':
                 axios
                     .get(state.context+`movie/list/0/${searchWord}`)
                     .then(({data})=>{
-                        alert('연결')
-                        commit('MOVIE',data)
-                        router.push('/naverMovie')
+                        commit("MOVIE", data);
+                        router.push("/movie");
                     })
-                    .catch(()=>{
-                        alert('실패')
-                    })
-                break;
+                    .catch(()=>{})
+                break
         }
 
     }
@@ -56,27 +52,12 @@ const mutations = {
                 thumbnail: item.thumbnail
             })
         })
-    },
-    MOVIE(state, data){
-        alert('뮤테이션에서 결과 수: '+data.count)
-        state.navermovie = []
-        state.count = data.count
-        data.list.forEach(item => {
-            state.navermovie.push({
-                movieSeq: item.movieSeq,
-                rank: item.rank,
-                title: item.title,
-                rankDate: item.rankDate
-
-            })
-        })
-
     }
 }
 const getters = {
     bugsmusic : state => state.bugsmusic,
     count: state => state.count,
-    navermovie: state => state.count
+    navermovie: state => state.navermovie
 }
 
 export default {

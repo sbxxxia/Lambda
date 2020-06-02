@@ -6,7 +6,9 @@
 
 <script>
     export default {
-        name: "Soccer"
+        created() {
+            alert('축구 페이지')
+        }
     }
 </script>
 

@@ -31,7 +31,7 @@
             />
         </div>
         <div>
-            <h3>검색된 수: {{ count }}</h3>
+            <h3>검색된 수</h3>
         </div>
         <div id="bottom">
             <div id="bottom_left">
@@ -51,23 +51,12 @@
     export default {
         data() {
             return {
-                searchWord: "",
-                count: 0
+                searchWord: ""
             };
-        },
-        created() {
-            alert('홈에서 크리티드 실행됨')
         },
         methods: {
             search() {
-                alert("검색 단어: "+this.searchWord)
-                if(this.searchWord === '벅스'){
-                    this.$store.dispatch("crawling/search", this.searchWord);
-                }else if(this.searchWord === '축구'){
-                    this.$store.dispatch("soccer/search", this.searchWord);
-                }else if(this.searchWord === '네이버영화'){
-                    this.$store.dispatch("crawling/search", this.searchWord);
-                }
+                this.$store.dispatch('search/find',this.searchWord)
             }
         }
     };

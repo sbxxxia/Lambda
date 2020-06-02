@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lambda.web.mappers.MusicMapper">
+    <insert id="insertMusic"
+            parameterType="com.lambda.web.music.MusicDTO">
+            insert title, artist, thumbnail into music
+            values (#{title},#{artist},#{thumbnail})
+    </insert>
+
+    <update id="updateMusic"
+            parameterType="com.lambda.web.music.MusicDTO">
+            update set title = #{title} from music
+            where seq like 'seq'
+    </update>
+
+    <delete id="deleteMusic"
+            parameterType="com.lambda.web.music.MusicDTO">
+            delete from music where seq like #{seq}
+    </delete>
+    <select id="selectMusics" resultType="com.lambda.web.music.MusicDTO"
+                                parameterType="com.lambda.web.proxy.Pager">
+            select seq, title, artist, thumbnail
+            from music
+            limit #{startRow}, #{pageSize}
+
+    </select>
+    <select id="selectMusic" resultType="com.lambda.web.music.MusicDTO"
+                                parameterType="string">
+            select seq, title, artist, thumbnail
+            from music
+            where seq = #{value}
+    </select>
+    <select id="count" resultType="int">
+            select count(*)
+            from music
+    </select>
+</mapper>
