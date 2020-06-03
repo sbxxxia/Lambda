@@ -56,11 +56,12 @@
                     res.data.list.forEach(elem=>{this.list.push(elem)})
                     this.pager = res.data.pager
                     let i = this.pager.startPage +1
-                    let arr = []
+                    const arr = []
                     console.log(`페이지 끝: ${this.pager.endPage}`)
                     for(; i <= this.pager.endPage +1; i++){
                         arr.push(i)
                     }
+                    this.pages = arr
                 })
                 .catch(err=>{
                     alert(`음악 전송 실패 ${err}`)
