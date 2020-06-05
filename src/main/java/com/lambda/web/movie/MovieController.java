@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/movies")
@@ -34,7 +36,14 @@ public class MovieController {
         pager.setBlockSize(5);
         pager.setPageSize(5);
         pager.paging();
-        Function<Pager,List<MovieDTO>> f = p -> movieMapper.selectMovies(p);
+        Function<Pager,List<MovieDTO>> f = p -> {
+            return
+                    movieMapper
+                            .selectMovies(p)
+                            .stream()
+                            .sorted()
+                            .collect(Collectors.toList());
+        };
         List<MovieDTO> l = f.apply(pager);
         pxy.print("**************");
         for(MovieDTO m : l){
